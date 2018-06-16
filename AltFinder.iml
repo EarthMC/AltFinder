@@ -17,5 +17,6 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="spigot-latest" level="project" />
+    <orderEntry type="library" name="mcleaks-api-1.9.5-SNAPSHOT-sources" level="project" />
   </component>
 </module>

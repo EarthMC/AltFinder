@@ -3,3 +3,10 @@ version: 0.0.1
 author: Karl Essinger (KarlofDuty)
 website: http://karlofduty.com
 main: com.karlofduty.altfinder.AltFinder
+commands:
+   ip:
+      description: Shows the IP of the player provided
+      usage: /ip <player>
+   mcleaks:
+      description: Checks if a user is an mcleaks stolen account.
+      usage: /mcleaks <player>
