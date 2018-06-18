@@ -1,0 +1,43 @@
+# Global message variables:
+# <sourceplayer>          - The name of the player who executed the command or console.
+# <targetplayer>          - The name of the player who is the target of the command, if there is no target, it will return the source player instead.
+
+# Colour codes:
+# §0	BLACK
+# §1	DARK BLUE
+# §2	DARK GREEN
+# §3	DARK AQUA
+# §4	DARK RED
+# §5	DARK PURPLE
+# §6	GOLD
+# §7	GRAY
+# §8	DARK GRAY
+# §9	INDIGO
+# §A    GREEN
+# §B	AQUA
+# §C	RED
+# §D	PINK
+# §E	YELLOW
+# §F	WHITE
+# §M	STRIKE THROUGH
+# §N	UNDERLINED
+# §L	BOLD
+# §K	RANDOM
+# §O	ITALIC
+
+# The messages section is not implemented yet, only used in development testing
+messages:
+  help:
+  - "AltFinder commands:"
+  - "/ip (player) - Prints the current IP of a player."
+  - "/mcleaks (player) - Checks a player account against a database of confirmed MCLeaks hacked accounts. Player must have joined the server at some point"
+  ip:
+  # Additional message variables:
+  # <ip>: The IP address of the target player.
+    self: "Your IP address is <ip>."
+    other: "Their IP address is <ip>."
+    nosuchplayer: "That player is not currently online."
+  mcleaks:
+    error: "§6An error occurred fetching player from MCLeaks database, try again later."
+    notfound: "§ePlayer is §2NOT §eon the list of confirmed MCLeaks accounts. This does not mean that they are not an MCLeaks account, only that they have not been found yet."
+    found: "§ePlayer §cIS §eon the list of confirmed MCLeaks account."

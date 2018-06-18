@@ -13,56 +13,53 @@ import java.util.concurrent.TimeUnit;
 
 public class CommandMCLeaks implements CommandExecutor
 {
-    final MCLeaksAPI api = MCLeaksAPI.builder()
+    public final MCLeaksAPI api = MCLeaksAPI.builder()
             .threadCount(2)
             .expireAfter(10, TimeUnit.MINUTES).build();
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings)
     {
-        if(strings.length > 0)
+        if(strings.length < 1)
         {
-            OfflinePlayer op = Bukkit.getOfflinePlayer(strings[0]);
-            if (op.hasPlayedBefore())
+            commandSender.sendMessage("§cInvalid command usage.");
+            return false;
+        }
+        if(!commandSender.hasPermission("altfinder.mcleaks"))
+        {
+            commandSender.sendMessage("§cYou do not have permission to do that.");
+            return true;
+        }
+        checkPlayerAsync(strings[0], api, result -> {
+            if(result == -1)
             {
-                checkPlayerAsync(op.getUniqueId(), api, new FetchMCLeaksCallback()
-                {
-                    @Override
-                    public void onCheckDone(int result)
-                    {
-                        if(result == -1)
-                        {
-                            commandSender.sendMessage("§6An error occurred fetching player from MCLeaks database, try again later.");
-                        }
-                        else if(result == 0)
-                        {
-                            commandSender.sendMessage("§2Player is NOT on the list of confirmed MCLeaks accounts");
-                        }
-                        else
-                        {
-                            commandSender.sendMessage("§cPlayer IS on the list of confirmed MCLeaks account.");
-                        }
-                    }
-                });
+                commandSender.sendMessage("§6An error occurred fetching player from MCLeaks database, try again later.");
             }
-            else
+            else if(result == 0)
+            {
+                commandSender.sendMessage("§ePlayer is §2NOT §eon the list of confirmed MCLeaks accounts. This does not mean that they are not an MCLeaks account, only that they have not been found yet.");
+            }
+            else if (result == 1)
+            {
+                commandSender.sendMessage("§ePlayer §cIS §eon the list of confirmed MCLeaks account.");
+            }
+            else if (result == 4)
             {
                 commandSender.sendMessage("This player has not joined the server before.");
             }
-            return true;
-        }
-        commandSender.sendMessage("Invalid command usage.");
-        return false;
+        });
+        return true;
+
     }
-    private static void checkPlayerAsync(final UUID uuid, final MCLeaksAPI api, final FetchMCLeaksCallback callback)
+    private static void checkPlayerAsync(final String username, final MCLeaksAPI api, final FetchMCLeaksCallback callback)
     {
         // Run outside of the tick loop
-        Bukkit.getScheduler().runTaskAsynchronously(AltFinder.getInstance(), new Runnable()
-        {
-            @Override
-            public void run()
+        Bukkit.getScheduler().runTaskAsynchronously(AltFinder.getInstance(), () -> {
+            int result = -1;
+            OfflinePlayer op = Bukkit.getOfflinePlayer(username);
+            if (op.hasPlayedBefore())
             {
-                int result = -1;
-                final MCLeaksAPI.Result uuidResult = api.checkAccount(uuid);
+
+                final MCLeaksAPI.Result uuidResult = api.checkAccount(op.getUniqueId());
                 if(!uuidResult.hasError())
                 {
                     if(uuidResult.isMCLeaks())
@@ -78,20 +75,18 @@ public class CommandMCLeaks implements CommandExecutor
                 {
                     uuidResult.getError().printStackTrace();
                 }
-
-                final int finalResult = result;
-
-                // go back to the tick loop
-                Bukkit.getScheduler().runTask(AltFinder.getInstance(), new Runnable()
-                {
-                    @Override
-                    public void run()
-                    {
-                        // call the callback with the result
-                        callback.onCheckDone(finalResult);
-                    }
-                });
             }
+            else
+            {
+                result = 2;
+            }
+            final int finalResult = result;
+
+            // go back to the tick loop
+            Bukkit.getScheduler().runTask(AltFinder.getInstance(), () -> {
+                // call the callback with the result
+                callback.onCheckDone(finalResult);
+            });
         });
     }
 }
