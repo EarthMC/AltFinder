@@ -4,22 +4,31 @@ author: Karl Essinger (KarlofDuty)
 website: http://karlofduty.com
 main: com.karlofduty.altfinder.AltFinder
 commands:
-   ip:
-      description: Shows the IP of the player provided
-      usage: /ip (player)
-   mcleaks:
-      description: Checks if a user is an mcleaks stolen account.
-      usage: /mcleaks <player>
+  ip:
+    description: Shows the IP of the player provided
+    usage: /ip (player)
+  mcleaks:
+    description: Checks if a user is an mcleaks stolen account.
+    usage: /mcleaks <player>
 permissions:
   altfinder.*:
     description: Gives access to all commands.
-    default: op
+    default: false
   altfinder.ip.*:
-    description: Gives acces to all versions of the /ip command
+    description: Gives acces to all versions of the /ip command.
     default: op
   altfinder.ip.self:
     description: Gives acces to using the /ip command on themselves.
     default: true
   altfinder.ip.other:
     description: Gives acces to using the /ip command on others.
+    default: op
+  altfinder.mcleaks.*:
+    description: Gives acces to all mcleaks features.
+    default: op
+  altfinder.mcleaks:
+    description: Gives acces to the /mcleaks command.
+    default: op
+  altfinder.mcleaks.notify:
+    description: Sends all mcleaks notifications to these players.
     default: op

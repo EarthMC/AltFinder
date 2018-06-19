@@ -1,11 +1,9 @@
 <component name="ArtifactManager">
-  <artifact type="jar" name="AltFinder:jar">
+  <artifact type="jar" build-on-make="true" name="AltFinder:jar">
     <output-path>$PROJECT_DIR$/bin/plugins</output-path>
     <root id="archive" name="AltFinder.jar">
       <element id="module-output" name="AltFinder" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/lib/spigot-api-latest.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/mcleaks-api-1.9.5-SNAPSHOT.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/lib/mcleaks-api-1.9.5-SNAPSHOT-sources.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>

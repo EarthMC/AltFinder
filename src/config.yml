@@ -30,7 +30,7 @@ messages:
   help:
   - "AltFinder commands:"
   - "/ip (player) - Prints the current IP of a player."
-  - "/mcleaks (player) - Checks a player account against a database of confirmed MCLeaks hacked accounts. Player must have joined the server at some point"
+  - "/mcleaks (player) - Checks a player account against a database of confirmed MCLeaksChecker hacked accounts. Player must have joined the server at some point"
   ip:
   # Additional message variables:
   # <ip>: The IP address of the target player.
@@ -38,6 +38,6 @@ messages:
     other: "Their IP address is <ip>."
     nosuchplayer: "That player is not currently online."
   mcleaks:
-    error: "§6An error occurred fetching player from MCLeaks database, try again later."
-    notfound: "§ePlayer is §2NOT §eon the list of confirmed MCLeaks accounts. This does not mean that they are not an MCLeaks account, only that they have not been found yet."
-    found: "§ePlayer §cIS §eon the list of confirmed MCLeaks account."
+    error: "§6An error occurred fetching player from MCLeaksChecker database, try again later."
+    notfound: "§ePlayer is §2NOT §eon the list of confirmed MCLeaksChecker accounts. This does not mean that they are not an MCLeaksChecker account, only that they have not been found yet."
+    found: "§ePlayer §cIS §eon the list of confirmed MCLeaksChecker account."
