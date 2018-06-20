@@ -22,6 +22,9 @@ Comparison of how many times two accounts have connected fom the same ip and a t
 ## Current Permissions
 
 `altfinder.mcleaks` - Gives access to the `/mcleaks` command.
+
 `altfinder.mcleaks.notify` - Displays a notification if a player who is using an mcleaks account joins.
+
 `altfinder.ip.self` - Allows `/ip` command to display own IP. (Given by default).
+
 `altfinder.ip.other` - Allows `/ip` command to display another palyer's IP.
