@@ -26,3 +26,5 @@ bin/*
 !bin/plugins/AltFinder.jar
 
 \.idea/
+
+target/
