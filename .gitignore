@@ -24,3 +24,5 @@ hs_err_pid*
 lib
 bin/*
 !bin/plugins/AltFinder.jar
+
+\.idea/

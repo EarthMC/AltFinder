@@ -1,10 +1,10 @@
 package com.karlofduty.altfinder;
 
+import com.karlofduty.altfinder.commands.CommandIP;
+import com.karlofduty.altfinder.commands.CommandMCLeaks;
 import com.karlofduty.altfinder.listeners.EventListener;
 import me.gong.mcleaks.MCLeaksAPI;
 import org.bukkit.plugin.java.JavaPlugin;
-import com.karlofduty.altfinder.commands.CommandIP;
-import com.karlofduty.altfinder.commands.CommandMCLeaks;
 
 import java.util.concurrent.TimeUnit;
 
