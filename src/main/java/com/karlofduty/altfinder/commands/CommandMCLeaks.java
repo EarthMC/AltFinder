@@ -6,37 +6,42 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
-public class CommandMCLeaks implements CommandExecutor
+public class CommandMCLeaks extends CommandUtilities implements CommandExecutor
 {
     @Override
-    public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings)
+    public boolean onCommand(CommandSender commandSender, Command command, String s, String[] args)
     {
-        if(strings.length < 1)
+        if(args.length == 0)
         {
-            commandSender.sendMessage("§cInvalid command usage.");
+            commandSender.sendMessage(parseConfigMessageSync("commands.invalidusage",commandSender));
             return false;
         }
         if(!commandSender.hasPermission("altfinder.mcleaks"))
         {
-            commandSender.sendMessage("§cYou do not have permission to do that.");
+            commandSender.sendMessage(parseConfigMessageSync("commands.noperm",commandSender));
             return true;
         }
-        MCLeaksChecker.checkPlayerAsync(strings[0], AltFinder.getInstance().mcLeaksAPI, (result, username) -> {
+
+        MCLeaksChecker.checkPlayerAsync(args[0],AltFinder.getInstance().mcLeaksAPI, (result) -> {
             if(result == -1)
             {
-                commandSender.sendMessage("§6An error occurred fetching player from MCLeaksChecker database, try again later.");
+                //Error occured
+                commandSender.sendMessage(parseConfigMessageSync("commands.mcleaks.error", commandSender, args[0]));
             }
             else if(result == 0)
             {
-                commandSender.sendMessage("§ePlayer is §2NOT §eon the list of confirmed MCLeaks accounts although may still be one.");
+                //User was not found on mcleaks
+                commandSender.sendMessage(parseConfigMessageSync("commands.mcleaks.notfound", commandSender, args[0]));
             }
             else if (result == 1)
             {
-                commandSender.sendMessage("§ePlayer §cIS §eon the list of confirmed MCLeaksChecker account.");
+                //User was found on mcleaks
+                commandSender.sendMessage(parseConfigMessageSync("commands.mcleaks.found", commandSender, args[0]));
             }
             else if (result == 2)
             {
-                commandSender.sendMessage("§eThis player has not joined the server before.");
+                //User has never joined the server
+                commandSender.sendMessage(parseConfigMessageSync("commands.mcleaks.nosuchplayer", commandSender, args[0]));
             }
         });
         return true;

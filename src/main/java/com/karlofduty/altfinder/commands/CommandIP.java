@@ -4,9 +4,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 
-public class CommandIP implements CommandExecutor
+public class CommandIP extends CommandUtilities implements CommandExecutor
 {
     @Override
     public boolean onCommand(CommandSender commandSender, Command cmd, String label, String[] args)
@@ -15,30 +14,29 @@ public class CommandIP implements CommandExecutor
         {
             if(commandSender.hasPermission("altfinder.ip.other"))
             {
-                commandSender.sendMessage("§eThe player's current IP address is §6" + Bukkit.getPlayer(args[0]).getAddress().getHostName() + "§e.");
+                if(Bukkit.getPlayer(args[0]) != null)
+                {
+                    commandSender.sendMessage(parseConfigMessageSync("commands.ip.other", commandSender, args[0]));
+                }
+                else
+                {
+                    commandSender.sendMessage(parseConfigMessageSync("commands.ip.nosuchplayer", commandSender, args[0]));
+                }
             }
             else
             {
-                commandSender.sendMessage("§cYou do not have permission to do that.");
+                commandSender.sendMessage(parseConfigMessageSync("commands.noperm", commandSender, args[0]));
             }
         }
         else
         {
             if(commandSender.hasPermission("altfinder.ip.self"))
             {
-                Player player = Bukkit.getPlayer(commandSender.getName());
-                if(player != null)
-                {
-                    commandSender.sendMessage("§eYour current IP address is §6" + player.getAddress().getHostName() + "§e.");
-                }
-                else
-                {
-                    commandSender.sendMessage("§eThat player is not currently online.");
-                }
+                commandSender.sendMessage(parseConfigMessageSync("commands.ip.self", commandSender));
             }
             else
             {
-                commandSender.sendMessage("§cYou do not have permission to do that.");
+                commandSender.sendMessage(parseConfigMessageSync("commands.noperm", commandSender));
             }
         }
         // If the player (or console) uses our command correct, we can return true

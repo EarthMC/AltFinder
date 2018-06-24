@@ -1,43 +1,90 @@
-# Global message variables:
-# <sourceplayer>          - The name of the player who executed the command or console.
-# <targetplayer>          - The name of the player who is the target of the command, if there is no target, it will return the source player instead.
+######## Global message variables: ########
+#
+## The player who executed the command
+## <sourceplayer>          - The name of the player who executed the command, if console will return "Console".
+## <sourceip>              - The ip of the player who executed the command, if console will return "127.0.0.1"
+## <sourceuuid>            - The uuid of the player who executed the command, if console will return "null"
+#
+## The player who is the target of the command/automated check, if there is no target they will all return null.
+## <targetplayer>          - The name of the player who is the target of the command, if there is no target it will return null.
+## <targetip>              - The ip of the player who is the target of the command, if there is no online target it will return null.
+## <targetuuid>            - The uuid of the player who is the target of the command, if there is no target it will return null
+#
+#
+## Colour codes:
+## §0	BLACK
+## §1	DARK BLUE
+## §2	DARK GREEN
+## §3	DARK AQUA
+## §4	DARK RED
+## §5	DARK PURPLE
+## §6	GOLD
+## §7	GRAY
+## §8	DARK GRAY
+## §9	INDIGO
+## §A   GREEN
+## §B	AQUA
+## §C	RED
+## §D	PINK
+## §E	YELLOW
+## §F	WHITE
+## §M	STRIKE THROUGH
+## §N	UNDERLINED
+## §L	BOLD
+## §K	RANDOM
+## §O	ITALIC
 
-# Colour codes:
-# §0	BLACK
-# §1	DARK BLUE
-# §2	DARK GREEN
-# §3	DARK AQUA
-# §4	DARK RED
-# §5	DARK PURPLE
-# §6	GOLD
-# §7	GRAY
-# §8	DARK GRAY
-# §9	INDIGO
-# §A    GREEN
-# §B	AQUA
-# §C	RED
-# §D	PINK
-# §E	YELLOW
-# §F	WHITE
-# §M	STRIKE THROUGH
-# §N	UNDERLINED
-# §L	BOLD
-# §K	RANDOM
-# §O	ITALIC
+database:
+  type: "mysql"
+  mysql:
+    hostname: "127.0.0.1"
+    port: "3306"
+    username: ""
+    password: ""
 
-# The messages section is not implemented yet, only used in development testing
-messages:
+# Settings related to the anti-mcleaks part of the plugin
+mcleaks:
+  # This is an automated check on all joining players to check if they are a confirmed mcleaks account, notifications are only sent to those with the permission to see it
+  onPlayerJoin:
+    enableAutoCheck: true
+
+    notifyIfNotMcleaks: false
+    ifNotMcleaksNotification: "§e<targetplayer> is §2NOT §eon the list of confirmed MCLeaksChecker accounts although may still be one."
+
+    notifyIfMcleaks: true
+    ifMcleaksNotification: "§eAn error occurred while automatically checking <targetplayer> in the MCLeaks database."
+
+    executeCommandIfMcleaksAccount: true
+    commandToExecuteIfMcleaksAccout: "ban <targetplayer> Using a stolen/hacked account."
+
+    notifyIfError: true
+    ifErrorNotification: "§e<targetplayer> §cIS §eon the list of confirmed MCLeaks accounts."
+
+
+
+
+# Settings for command responses
+commands:
+
+  # /help
   help:
   - "AltFinder commands:"
   - "/ip (player) - Prints the current IP of a player."
   - "/mcleaks (player) - Checks a player account against a database of confirmed MCLeaksChecker hacked accounts. Player must have joined the server at some point"
+
+  # /ip
   ip:
-  # Additional message variables:
-  # <ip>: The IP address of the target player.
-    self: "Your IP address is <ip>."
-    other: "Their IP address is <ip>."
-    nosuchplayer: "That player is not currently online."
+    self: "§eYour current IP address is §6<sourceip>§e."
+    other: "§eThe player's current IP address is §6<targetip>§e."
+    nosuchplayer: "§eThat player is not currently online."
+
+  # /mcleaks
   mcleaks:
     error: "§6An error occurred fetching player from MCLeaksChecker database, try again later."
-    notfound: "§ePlayer is §2NOT §eon the list of confirmed MCLeaksChecker accounts. This does not mean that they are not an MCLeaksChecker account, only that they have not been found yet."
+    notfound: "§ePlayer is §2NOT §eon the list of confirmed MCLeaks accounts although may still be one."
     found: "§ePlayer §cIS §eon the list of confirmed MCLeaksChecker account."
+    nosuchplayer: "§eThis player has not joined the server before."
+
+  # General errors, target player variables do not work here
+  noperm: "§cYou do not have permission to do that."
+  invalidusage: "§cInvalid command usage."

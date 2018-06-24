@@ -3,6 +3,7 @@ package com.karlofduty.altfinder;
 import me.gong.mcleaks.MCLeaksAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.command.CommandSender;
 
 import java.util.UUID;
 
@@ -55,7 +56,7 @@ public class MCLeaksChecker
             // go back to the tick loop
             Bukkit.getScheduler().runTask(AltFinder.getInstance(), () -> {
                 // call the callback with the result
-                callback.onCheckDone(finalResult, username);
+                callback.onCheckDone(finalResult);
             });
         });
     }
