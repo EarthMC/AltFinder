@@ -15,24 +15,25 @@ public class EventListener extends CommandUtilities implements Listener
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event)
     {
-        final String username = event.getPlayer().getName();
-        MCLeaksChecker.checkPlayerAsync(username, AltFinder.getInstance().mcLeaksAPI, (result) -> {
-            for (Player player : Bukkit.getServer().getOnlinePlayers())
+        if(isConfigSettingOn("mcleaks.onPlayerJoin.enableAutoCheck"))
+        {
+            final String username = event.getPlayer().getName();
+            MCLeaksChecker.checkPlayerAsync(username, AltFinder.getInstance().mcLeaksAPI, (result) ->
             {
-                if(player.hasPermission("altfinder.mcleaks.notify"))
-                {
-                    if(result == -1 && isConfigSettingOn("mcleaks.onPlayerJoin.notifyIfError"))
-                        player.sendMessage(parseConfigMessageSync("mcleaks.onPlayerJoin.ifErrorNotification",getConsole(),username));
-                    else if(result == 0 && isConfigSettingOn("mcleaks.onPlayerJoin.notifyIfNotMcleaks"))
-                        player.sendMessage(parseConfigMessageSync("mcleaks.onPlayerJoin.ifNotMcleaksNotification",getConsole(),username));
-                    else if (result == 1 && isConfigSettingOn("mcleaks.onPlayerJoin.notifyIfMcleaks"))
-                        player.sendMessage(parseConfigMessageSync("mcleaks.onPlayerJoin.ifMcleaksNotification",getConsole(),username));
+                for (Player player : Bukkit.getServer().getOnlinePlayers()) {
+                    if (player.hasPermission("altfinder.mcleaks.notify")) {
+                        if (result == -1 && isConfigSettingOn("mcleaks.onPlayerJoin.notifyIfError"))
+                            player.sendMessage(parseConfigMessageSync("mcleaks.onPlayerJoin.ifErrorNotification", getConsole(), username));
+                        else if (result == 0 && isConfigSettingOn("mcleaks.onPlayerJoin.notifyIfNotMcleaks"))
+                            player.sendMessage(parseConfigMessageSync("mcleaks.onPlayerJoin.ifNotMcleaksNotification", getConsole(), username));
+                        else if (result == 1 && isConfigSettingOn("mcleaks.onPlayerJoin.notifyIfMcleaks"))
+                            player.sendMessage(parseConfigMessageSync("mcleaks.onPlayerJoin.ifMcleaksNotification", getConsole(), username));
+                    }
                 }
-            }
-            if (result == 1 && isConfigSettingOn("mcleaks.onPlayerJoin.executeCommandIfMcleaksAccount"))
-            {
-                AltFinder.getInstance().getServer().dispatchCommand(getConsole(),parseConfigMessageSync("mcleaks.onPlayerJoin.ifMcleaksNotification",getConsole(),username));
-            }
-        });
+                if (result == 1 && isConfigSettingOn("mcleaks.onPlayerJoin.executeCommandIfMcleaksAccount")) {
+                    AltFinder.getInstance().getServer().dispatchCommand(getConsole(), parseConfigMessageSync("mcleaks.onPlayerJoin.ifMcleaksNotification", getConsole(), username));
+                }
+            });
+        }
     }
 }
