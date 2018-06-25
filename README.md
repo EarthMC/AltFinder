@@ -1,6 +1,6 @@
 # AltFinder
 
-A spigot plugin made for EarthMC. Not released yet.
+A spigot plugin to track down alternative accounts made for EarthMC. Not released yet.
 
 ## Coming features: 
 Check accounts against the database of stolen accounts MCLeaks.
@@ -11,7 +11,7 @@ Manage alts to split the accounts of friends and family so they do not trigger w
 
 Accounts that have once connected from the same ip and then been verified as being different players will still trigger warnings if any additional accounts connect from the same ip in the future.
 
-Comparison of how many times two accounts have connected fom the same ip and a timeline overview.
+Comparison of how many times two accounts have connected from the same ip and a timeline overview.
 
 ## Current Commands
 
