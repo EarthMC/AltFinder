@@ -1,9 +1,9 @@
 package com.karlofduty.altfinder;
 
+import com.karlofduty.altfinder.callbacks.FetchMCLeaksCallback;
 import me.gong.mcleaks.MCLeaksAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
-import org.bukkit.command.CommandSender;
 
 import java.util.UUID;
 

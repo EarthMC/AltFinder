@@ -1,24 +1,25 @@
 package com.karlofduty.altfinder.commands;
 
 import com.karlofduty.altfinder.AltFinder;
+import com.karlofduty.altfinder.ConfigValues;
 import com.karlofduty.altfinder.MCLeaksChecker;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
-public class CommandMCLeaks extends CommandUtilities implements CommandExecutor
+public class MCLeaksCommand extends CommandUtilities implements CommandExecutor
 {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] args)
     {
         if(args.length == 0)
         {
-            commandSender.sendMessage(parseConfigMessageSync("commands.invalidusage",commandSender));
+            commandSender.sendMessage(ConfigValues.getParsedString("commands.invalid-usage",commandSender));
             return false;
         }
         if(!commandSender.hasPermission("altfinder.mcleaks"))
         {
-            commandSender.sendMessage(parseConfigMessageSync("commands.noperm",commandSender));
+            commandSender.sendMessage(ConfigValues.getParsedString("commands.no-perm",commandSender));
             return true;
         }
 
@@ -26,25 +27,24 @@ public class CommandMCLeaks extends CommandUtilities implements CommandExecutor
             if(result == -1)
             {
                 //Error occured
-                commandSender.sendMessage(parseConfigMessageSync("commands.mcleaks.error", commandSender, args[0]));
+                commandSender.sendMessage(ConfigValues.getParsedString("commands.mcleaks.error", commandSender, args[0]));
             }
             else if(result == 0)
             {
                 //User was not found on mcleaks
-                commandSender.sendMessage(parseConfigMessageSync("commands.mcleaks.notfound", commandSender, args[0]));
+                commandSender.sendMessage(ConfigValues.getParsedString("commands.mcleaks.not-found", commandSender, args[0]));
             }
             else if (result == 1)
             {
                 //User was found on mcleaks
-                commandSender.sendMessage(parseConfigMessageSync("commands.mcleaks.found", commandSender, args[0]));
+                commandSender.sendMessage(ConfigValues.getParsedString("commands.mcleaks.found", commandSender, args[0]));
             }
             else if (result == 2)
             {
                 //User has never joined the server
-                commandSender.sendMessage(parseConfigMessageSync("commands.mcleaks.nosuchplayer", commandSender, args[0]));
+                commandSender.sendMessage(ConfigValues.getParsedString("commands.mcleaks.no-such-player", commandSender, args[0]));
             }
         });
         return true;
-
     }
 }

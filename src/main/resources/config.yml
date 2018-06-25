@@ -12,27 +12,27 @@
 #
 #
 ## Colour codes:
-## §0	BLACK
-## §1	DARK BLUE
-## §2	DARK GREEN
-## §3	DARK AQUA
-## §4	DARK RED
-## §5	DARK PURPLE
-## §6	GOLD
-## §7	GRAY
-## §8	DARK GRAY
-## §9	INDIGO
-## §A   GREEN
-## §B	AQUA
-## §C	RED
-## §D	PINK
-## §E	YELLOW
-## §F	WHITE
-## §M	STRIKE THROUGH
-## §N	UNDERLINED
-## §L	BOLD
-## §K	RANDOM
-## §O	ITALIC
+## &0	BLACK
+## &1	DARK BLUE
+## &2	DARK GREEN
+## &3	DARK AQUA
+## &4	DARK RED
+## &5	DARK PURPLE
+## &6	GOLD
+## &7	GRAY
+## &8	DARK GRAY
+## &9	INDIGO
+## &A   GREEN
+## &B	AQUA
+## &C	RED
+## &D	PINK
+## &E	YELLOW
+## &F	WHITE
+## &M	STRIKE THROUGH
+## &N	UNDERLINED
+## &L	BOLD
+## &K	RANDOM
+## &O	ITALIC
 
 database:
   type: "mysql"
@@ -44,21 +44,31 @@ database:
 
 # Settings related to the anti-mcleaks part of the plugin
 mcleaks:
-  # This is an automated check on all joining players to check if they are a confirmed mcleaks account, notifications are only sent to those with the permission to see it
-  onPlayerJoin:
-    enableAutoCheck: true
+  join-check:
+    # Automatically check joining players against the mcleaks database
+    enable-join-check: true
 
-    notifyIfNotMcleaks: false
-    ifNotMcleaksNotification: "§e<targetplayer> is §2NOT §eon the list of confirmed MCLeaksChecker accounts although may still be one."
+    # Actions to take when an error occurs and a player can't be checked
+    error:
+      notify: true
+      notification: "&eAn error occurred while automatically checking <targetplayer> in the MCLeaks database."
+      execute-command: true
+      command: "mail send admin Error occured checking <targetplayer>"
 
-    notifyIfMcleaks: true
-    ifMcleaksNotification: "§eAn error occurred while automatically checking <targetplayer> in the MCLeaks database."
+    # Actions to take when a player is not on the confirmed mcleaks list
+    not-mcleaks:
+      notify: false
+      notification: "&e<targetplayer> is &2NOT &eon the list of confirmed MCLeaksChecker accounts although may still be one."
+      execute-command: false
+      command: "setgroup <targetplayer> Trusted"
 
-    executeCommandIfMcleaksAccount: true
-    commandToExecuteIfMcleaksAccout: "ban <targetplayer> Using a stolen/hacked account."
+    # Actions to take when a player is on the confirmed mcleaks list
+    is-mcleaks:
+      notify: true
+      notification: "&e<targetplayer> &cIS &eon the list of confirmed MCLeaks accounts."
+      execute-command: true
+      command: "ban <targetplayer> Using a stolen/hacked account."
 
-    notifyIfError: true
-    ifErrorNotification: "§e<targetplayer> §cIS §eon the list of confirmed MCLeaks accounts."
 
 
 
@@ -74,17 +84,17 @@ commands:
 
   # /ip
   ip:
-    self: "§eYour current IP address is §6<sourceip>§e."
-    other: "§eThe player's current IP address is §6<targetip>§e."
-    nosuchplayer: "§eThat player is not currently online."
+    self: "&eYour current IP address is &6<sourceip>&e."
+    other: "&eThe player's current IP address is &6<targetip>&e."
+    no-such-player: "&eThat player is not currently online."
 
   # /mcleaks
   mcleaks:
-    error: "§6An error occurred fetching player from MCLeaksChecker database, try again later."
-    notfound: "§ePlayer is §2NOT §eon the list of confirmed MCLeaks accounts although may still be one."
-    found: "§ePlayer §cIS §eon the list of confirmed MCLeaksChecker account."
-    nosuchplayer: "§eThis player has not joined the server before."
+    error: "&6An error occurred fetching player from MCLeaksChecker database, try again later."
+    not-found: "&e<targetplayer> is &2NOT &eon the list of confirmed MCLeaks accounts although may still be one."
+    found: "&e<targetplayer> &cIS &eon the list of confirmed MCLeaksChecker account."
+    no-such-player: "&e<targetplayer> has not joined the server before."
 
-  # General errors, target player variables do not work here
-  noperm: "§cYou do not have permission to do that."
-  invalidusage: "§cInvalid command usage."
+  # General command feedback, target player variables do not work here
+  no-perm: "&cYou do not have permission to do that."
+  invalid-usage: "&cInvalid command usage."

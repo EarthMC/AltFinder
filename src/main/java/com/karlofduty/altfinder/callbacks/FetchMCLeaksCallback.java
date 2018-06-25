@@ -1,6 +1,4 @@
-package com.karlofduty.altfinder;
-
-import org.bukkit.command.CommandSender;
+package com.karlofduty.altfinder.callbacks;
 
 public interface FetchMCLeaksCallback {
 
