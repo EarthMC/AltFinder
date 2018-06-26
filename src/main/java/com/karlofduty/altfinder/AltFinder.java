@@ -32,7 +32,6 @@ public class AltFinder extends JavaPlugin
     @Override
     public void onDisable()
     {
-        //Fired when the server stops and disables all plugins
 
     }
 
@@ -47,15 +46,15 @@ public class AltFinder extends JavaPlugin
 
     public static void executeCommand(String command)
     {
-        AltFinder.getInstance().getServer().dispatchCommand(getConsole(), command);
+        instance.getServer().dispatchCommand(getConsole(), command);
     }
 
     public static void log(String message)
     {
-        AltFinder.getInstance().getServer().getLogger().info(message);
+        instance.getServer().getLogger().info(message);
     }
     public static void logWarning(String message)
     {
-        AltFinder.getInstance().getServer().getLogger().warning(message);
+        instance.getServer().getLogger().warning(message);
     }
 }
