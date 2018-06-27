@@ -56,10 +56,11 @@ public interface ConfigValues
         result = result.replaceAll("<targetip>", targetIP);
 
         result = ChatColor.translateAlternateColorCodes('&', result);
-        AltFinder.getInstance().getLogger().info(ChatColor.stripColor(result));
+        AltFinder.log("[Server -> " + sourceName + "]: " + ChatColor.stripColor(result));
         return result;
     }
 
+    // Gets the info needed for getParsedString(...) from either an online or offline player
     static String[] getPlayerInfo(String username)
     {
         if(Bukkit.getPlayer(username) != null)

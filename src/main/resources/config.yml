@@ -34,12 +34,16 @@
 ## &K	RANDOM
 ## &O	ITALIC
 
+# Only change this value if you have manually added new config entries and want to remove the console warning
+config-version: "00001"
+
 database:
   type: "mysql"
   mysql:
+    database: "altfinder"
     hostname: "127.0.0.1"
     port: "3306"
-    username: ""
+    username: "root"
     password: ""
 
 # Settings related to the anti-mcleaks part of the plugin
@@ -51,21 +55,21 @@ mcleaks:
     # Actions to take when an error occurs and a player can't be checked
     error:
       notify: true
-      notification: "&eAn error occurred while automatically checking <targetplayer> in the MCLeaks database."
+      notification: "&6An error occurred while automatically checking &e<targetplayer>&6 in the MCLeaks database."
       execute-command: true
       command: "mail send admin Error occured checking <targetplayer>"
 
     # Actions to take when a player is not on the confirmed mcleaks list
     not-mcleaks:
       notify: false
-      notification: "&e<targetplayer> is &2NOT &eon the list of confirmed MCLeaksChecker accounts although may still be one."
+      notification: "&e<targetplayer>&6 is &2NOT &6on the list of confirmed MCLeaksChecker accounts although may still be one."
       execute-command: false
       command: "setgroup <targetplayer> Trusted"
 
     # Actions to take when a player is on the confirmed mcleaks list
     is-mcleaks:
       notify: true
-      notification: "&e<targetplayer> &cIS &eon the list of confirmed MCLeaks accounts."
+      notification: "&e<targetplayer>&6 &cIS &6on the list of confirmed MCLeaks accounts."
       execute-command: true
       command: "ban <targetplayer> Using a stolen/hacked account."
 
@@ -84,16 +88,16 @@ commands:
 
   # /ip
   ip:
-    self: "&eYour current IP address is &6<sourceip>&e."
-    other: "&eThe player's current IP address is &6<targetip>&e."
-    no-such-player: "&eThat player is not currently online."
+    self: "&6Your current IP address is &e<sourceip>&6."
+    other: "&6The player's current IP address is &e<targetip>&6."
+    no-such-player: "&6That player is not currently online."
 
   # /mcleaks
   mcleaks:
     error: "&6An error occurred fetching player from MCLeaksChecker database, try again later."
-    not-found: "&e<targetplayer> is &2NOT &eon the list of confirmed MCLeaks accounts although may still be one."
-    found: "&e<targetplayer> &cIS &eon the list of confirmed MCLeaksChecker account."
-    no-such-player: "&e<targetplayer> has not joined the server before."
+    not-found: "&e<targetplayer>&6 is &2NOT &6on the list of confirmed MCLeaks accounts although may still be one."
+    found: "&e<targetplayer>&6 &cIS &6on the list of confirmed MCLeaksChecker account."
+    no-such-player: "&e<targetplayer> &6has not joined the server before."
 
   # General command feedback, target player variables do not work here
   no-perm: "&cYou do not have permission to do that."
