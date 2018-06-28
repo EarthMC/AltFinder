@@ -1,5 +1,8 @@
-package com.karlofduty.altfinder;
+package com.karlofduty.altfinder.eventlisteners;
 
+import com.karlofduty.altfinder.AltFinder;
+import com.karlofduty.altfinder.ConfigValues;
+import com.karlofduty.altfinder.MCLeaksChecker;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -7,7 +10,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
 
-public class EventListener implements Listener
+public class OnPlayerJoin implements Listener
 {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event)

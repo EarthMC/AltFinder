@@ -2,6 +2,7 @@ package com.karlofduty.altfinder;
 
 import com.karlofduty.altfinder.commands.IPCommand;
 import com.karlofduty.altfinder.commands.MCLeaksCommand;
+import com.karlofduty.altfinder.eventlisteners.OnPlayerJoin;
 import me.gong.mcleaks.MCLeaksAPI;
 import org.bukkit.ChatColor;
 import org.bukkit.command.ConsoleCommandSender;
@@ -24,6 +25,7 @@ public class AltFinder extends JavaPlugin
     {
         instance = this;
 
+        //TODO: Add database integration and begin player logging
         //TODO: Config validation
         saveDefaultConfig();
         config = this.getConfig();
@@ -38,9 +40,10 @@ public class AltFinder extends JavaPlugin
         // Set command executors
         this.getCommand("ip").setExecutor(new IPCommand());
         this.getCommand("mcleaks").setExecutor(new MCLeaksCommand());
+        //TODO: Add reload command
 
         // Register events
-        getServer().getPluginManager().registerEvents(new EventListener(), this);
+        getServer().getPluginManager().registerEvents(new OnPlayerJoin(), this);
     }
 
     @Override
