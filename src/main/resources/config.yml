@@ -40,9 +40,9 @@ config-version: "00001"
 database:
   type: "mysql"
   mysql:
+    hostname: "localhost"
+    port: 3306
     database: "altfinder"
-    hostname: "127.0.0.1"
-    port: "3306"
     username: "root"
     password: ""
 
