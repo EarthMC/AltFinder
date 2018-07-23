@@ -37,15 +37,6 @@
 # Only change this value if you have manually added new config entries and want to remove the console warning
 config-version: "00001"
 
-database:
-  type: "mysql"
-  mysql:
-    hostname: "localhost"
-    port: 3306
-    database: "altfinder"
-    username: "root"
-    password: ""
-
 # Settings related to the anti-mcleaks part of the plugin
 mcleaks:
   join-check:
@@ -72,10 +63,6 @@ mcleaks:
       notification: "&e<targetplayer>&6 &cIS &6on the list of confirmed MCLeaks accounts."
       execute-command: true
       command: "ban <targetplayer> Using a stolen/hacked account."
-
-
-
-
 
 # Settings for command responses
 commands:
