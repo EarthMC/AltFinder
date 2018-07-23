@@ -2,7 +2,6 @@ package com.karlofduty.altfinder;
 
 import com.karlofduty.altfinder.commands.IPCommand;
 import com.karlofduty.altfinder.commands.MCLeaksCommand;
-import com.karlofduty.altfinder.eventlisteners.MCLeaksAutoCheck;
 import com.karlofduty.altfinder.eventlisteners.OnPlayerJoin;
 import me.gong.mcleaks.MCLeaksAPI;
 import org.bukkit.ChatColor;
@@ -10,16 +9,12 @@ import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.sql.SQLException;
 import java.util.concurrent.TimeUnit;
 
 public class AltFinder extends JavaPlugin
 {
     public static FileConfiguration config;
     private static String configVersion = "00001";
-
-    public static Database database = new Database();
-
 
     public final MCLeaksAPI mcLeaksAPI = MCLeaksAPI.builder()
             .threadCount(2)
@@ -43,22 +38,6 @@ public class AltFinder extends JavaPlugin
                     "Compatible config version: " + configVersion + "\n");
         }
 
-        //TODO: Add database integration and begin player logging
-        try
-        {
-            database.connect(
-                    config.getString("database.mysql.hostname"),
-                    config.getInt   ("database.mysql.port"),
-                    config.getString("database.mysql.database"),
-                    config.getString("database.mysql.username"),
-                    config.getString("database.mysql.password")
-            );
-        }
-        catch (SQLException e)
-        {
-            e.printStackTrace();
-        }
-
         // Set command executors
         this.getCommand("ip").setExecutor(new IPCommand());
         this.getCommand("mcleaks").setExecutor(new MCLeaksCommand());
@@ -72,7 +51,6 @@ public class AltFinder extends JavaPlugin
     public void onDisable()
     {
         mcLeaksAPI.shutdown();
-        database.disconnect();
     }
 
     public static AltFinder getInstance() {
