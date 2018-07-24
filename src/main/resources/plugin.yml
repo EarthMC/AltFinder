@@ -1,5 +1,5 @@
 name: AltFinder
-version: 0.0.2
+version: 0.0.3
 author: Karl Essinger (KarlofDuty)
 website: http://karlofduty.com
 main: com.karlofduty.altfinder.AltFinder
@@ -10,6 +10,9 @@ commands:
   mcleaks:
     description: Checks if a user is an mcleaks stolen account.
     usage: /mcleaks <player>
+  vpnshield:
+    description: Toggles VPNShield or VPNShield's strictmode
+    usage: /vpnshield [on/off/toggle] or /vpnshield strictmode [on/off/toggle]
 permissions:
   altfinder.*:
     description: Gives access to all commands.
@@ -31,4 +34,16 @@ permissions:
     default: op
   altfinder.mcleaks.notify:
     description: Sends all mcleaks notifications to these players.
+    default: op
+  altfinder.vpnshield.notify:
+    description: Sends all vpnshield notifications to these players.
+    default: op
+  altfinder.vpnshield.bypass:
+    description: Player can join with VPN while VPNShield is on.
+    default: op
+  altfinder.vpnshield.toggle:
+    description: Player can toggle VPNShield.
+    default: op
+  altfinder.vpnshield.strictmode.toggle:
+    description: Player can toggle strict mode.
     default: op
