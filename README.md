@@ -19,6 +19,10 @@ Comparison of how many times two accounts have connected from the same ip and a 
 
 `/ip (player)` - Prints a player's IP.
 
+`/vpnshield [on/off/toggle]` - Toggles VPNShield
+
+`/vpnshield strictmode [on/off/toggle]` - Toggles VPNShield strict mode, not recommended to be used outside of spam bot attacks.
+
 ## Current Permissions
 
 `altfinder.mcleaks` - Gives access to the `/mcleaks` command.
@@ -28,3 +32,11 @@ Comparison of how many times two accounts have connected from the same ip and a 
 `altfinder.ip.self` - Allows `/ip` command to display own IP. (Given by default).
 
 `altfinder.ip.other` - Allows `/ip` command to display another palyer's IP.
+
+`altfinder.vpnshield.notify` - Allows player to get VPNShield notifications.
+
+`altfinder.vpnshield.bypass` - Will not execute the using-vpn command on this player.
+
+`altfinder.vpnshield.toggle` - Allows turning VPNShield on and off.
+
+`altfinder.vpnshield.strictmode.toggle` - Allows turning strict mode on and off.
