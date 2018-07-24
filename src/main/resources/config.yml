@@ -35,7 +35,7 @@
 ## &O	ITALIC
 
 # Only change this value if you have manually added new config entries and want to remove the console warning
-config-version: "00001"
+config-version: "00002"
 
 # Settings related to the anti-mcleaks part of the plugin
 mcleaks:
@@ -63,6 +63,41 @@ mcleaks:
       notification: "&e<targetplayer>&6 &cIS &6on the list of confirmed MCLeaks accounts."
       execute-command: true
       command: "ban <targetplayer> Using a stolen/hacked account."
+
+vpnshield:
+  # API key, register on https://iphub.info/ and add a subscription. Free subscriptions come with a 1000 queries per day limit, other plans are available.
+  api-key: ""
+  # The VPN blocker is toggled on at server start. Not recommended if you get 1000 joins every day.
+  enable-by-default: false
+
+  # Start with increased sensitivity level (may result in false positives, check https://docs.iphub.info/documentation/json-keys/ for more info)
+  increased-default-sensitivity: false;
+
+  # Actions to take when an error occurs and a player can't be checked
+  error:
+    notify: true
+    notification: "&6An error occurred while automatically checking &e<targetplayer>&6 against VPN database."
+    execute-command: true
+    command: "mail send admin Error occured checking <targetplayer>"
+
+  # Actions to take when a player is not using a vpn
+  not-vpn:
+    notify: true
+    notification: "&e<targetplayer>&6 is &2NOT &6on using a VPN according to current filters."
+    execute-command: false
+    command: "setgroup <targetplayer> Trusted"
+
+  # Actions to take when a player is using a vpn
+  using-vpn:
+    notify: true
+    notification: "&e<targetplayer>&6 &cIS &6using a VPN according to current filters."
+    execute-command: true
+    command: "kick <targetplayer> Using a VPN or proxy is not allowed. Turn it off and try again."
+
+  # Send a message to a player bypassing the using-vpn command
+  bypass:
+    notify: true
+    notification: "&6You have bypassed VPNShield."
 
 # Settings for command responses
 commands:

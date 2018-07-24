@@ -60,6 +60,11 @@ public interface ConfigValues
         return result;
     }
 
+    static String getString(String configPath)
+    {
+        return AltFinder.config.getString(configPath);
+    }
+
     // Gets the info needed for getParsedString(...) from either an online or offline player
     static String[] getPlayerInfo(String username)
     {

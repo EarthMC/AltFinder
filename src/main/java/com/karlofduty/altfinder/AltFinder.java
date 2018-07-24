@@ -14,13 +14,17 @@ import java.util.concurrent.TimeUnit;
 public class AltFinder extends JavaPlugin
 {
     public static FileConfiguration config;
-    private static String configVersion = "00001";
+    private static String configVersion = "00002";
 
     public final MCLeaksAPI mcLeaksAPI = MCLeaksAPI.builder()
             .threadCount(2)
             .expireAfter(30, TimeUnit.MINUTES).build();
 
     private static AltFinder instance;
+
+    public boolean vpnShieldEnabled;
+
+    public boolean vpnShieldStrictMode;
 
     @Override
     public void onEnable()
@@ -37,6 +41,10 @@ public class AltFinder extends JavaPlugin
                     "Current config version: " + config.getString("config-version") + "\n"+
                     "Compatible config version: " + configVersion + "\n");
         }
+
+        // Set VPNShield options
+        vpnShieldEnabled = config.getBoolean("vpnshield.enable-by-default");
+        vpnShieldStrictMode = config.getBoolean("increased-default-sensitivity");
 
         // Set command executors
         this.getCommand("ip").setExecutor(new IPCommand());
