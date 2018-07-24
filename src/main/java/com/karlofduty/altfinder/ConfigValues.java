@@ -62,7 +62,7 @@ public interface ConfigValues
 
     static String getString(String configPath)
     {
-        return AltFinder.config.getString(configPath);
+        return ChatColor.translateAlternateColorCodes('&', AltFinder.config.getString(configPath));
     }
 
     // Gets the info needed for getParsedString(...) from either an online or offline player

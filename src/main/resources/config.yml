@@ -83,7 +83,7 @@ vpnshield:
   # Actions to take when a player is not using a vpn
   not-vpn:
     notify: true
-    notification: "&e<targetplayer>&6 is &2NOT &6on using a VPN according to current filters."
+    notification: "&e<targetplayer>&6 is &2NOT &6 using a VPN according to current filters."
     execute-command: false
     command: "setgroup <targetplayer> Trusted"
 
@@ -120,6 +120,13 @@ commands:
     not-found: "&e<targetplayer>&6 is &2NOT &6on the list of confirmed MCLeaks accounts although may still be one."
     found: "&e<targetplayer>&6 &cIS &6on the list of confirmed MCLeaksChecker account."
     no-such-player: "&e<targetplayer> &6has not joined the server before."
+
+  vpnshield:
+    enable: "&6VPNShield enabled."
+    disable: "&6VPNShield disabled."
+    strictmode:
+      enable: "&6VPNShield strict mode enabled."
+      disable: "&6VPNShield strict mode disabled."
 
   # General command feedback, target player variables do not work here
   no-perm: "&cYou do not have permission to do that."

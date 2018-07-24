@@ -22,8 +22,7 @@ public class OnPlayerJoin implements Listener
         {
             MCLeaksAutoCheck.checkPlayer(event);
         }
-
-        if(ConfigValues.getBool("mcleaks.join-check.enable-join-check"))
+        if(AltFinder.getInstance().vpnShieldEnabled && !ConfigValues.getString("vpnshield.api-key").equals(""))
         {
             checkVPN(event);
         }
@@ -47,11 +46,10 @@ public class OnPlayerJoin implements Listener
                     final JSONObject obj = (JSONObject) new JSONParser().parse(result);
                     long severity = (long)obj.get("block");
 
-                    if(severity == 1 || ConfigValues.getBool("vpnshield.increased-default-sensitivity") && severity == 2)
+                    if(severity == 1 || (AltFinder.getInstance().vpnShieldStrictMode && severity == 2))
                     {
                         resultCode = 1;
                     }
-
                 }
                 catch (ParseException e)
                 {
@@ -104,9 +102,7 @@ public class OnPlayerJoin implements Listener
                 {
                     AltFinder.executeCommand(ConfigValues.getParsedString("vpnshield.using-vpn.command", AltFinder.getConsole(), username));
                 }
-
             }
-
         });
     }
 }

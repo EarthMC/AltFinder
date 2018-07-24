@@ -2,6 +2,7 @@ package com.karlofduty.altfinder;
 
 import com.karlofduty.altfinder.commands.IPCommand;
 import com.karlofduty.altfinder.commands.MCLeaksCommand;
+import com.karlofduty.altfinder.commands.VPNShieldCommand;
 import com.karlofduty.altfinder.eventlisteners.OnPlayerJoin;
 import me.gong.mcleaks.MCLeaksAPI;
 import org.bukkit.ChatColor;
@@ -49,6 +50,7 @@ public class AltFinder extends JavaPlugin
         // Set command executors
         this.getCommand("ip").setExecutor(new IPCommand());
         this.getCommand("mcleaks").setExecutor(new MCLeaksCommand());
+        this.getCommand("vpnshield").setExecutor(new VPNShieldCommand());
         //TODO: Add reload command
 
         // Register events
