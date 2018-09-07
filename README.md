@@ -1,6 +1,8 @@
+# **Development currently paused, if you are interested in the plugin, create an issue and I'll get right back to developing it.**
+
 # AltFinder
 
-A spigot plugin to track down alternative accounts made for EarthMC. Not released yet. **(Development currently paused)**
+A spigot plugin to track down alternative accounts made for EarthMC. Not released yet.
 
 ## Coming features: 
 Check accounts against the database of stolen accounts MCLeaks.
