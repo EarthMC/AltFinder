@@ -1,4 +1,4 @@
-# **Development currently paused, if you are interested in the plugin, create an issue and I'll get right back to developing it.**
+# **Development currently paused as it is only used by me unlike my other plugins, if you are interested in this plugin, create an issue and I'll get right back to developing it.**
 
 # AltFinder
 
