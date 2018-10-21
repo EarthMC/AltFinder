@@ -12,7 +12,7 @@ public class VPNShieldCommand extends CommandUtilities implements CommandExecuto
     @Override
     public boolean onCommand(CommandSender commandSender, Command cmd, String label, String[] args)
     {
-        if(args.length >= 0)
+        if(args.length > 0)
         {
             if(args[0].equals("toggle"))
             {
