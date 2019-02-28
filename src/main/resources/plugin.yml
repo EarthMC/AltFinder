@@ -18,19 +18,19 @@ permissions:
     description: Gives access to all commands.
     default: false
   altfinder.ip.*:
-    description: Gives acces to all versions of the /ip command.
+    description: Gives access to all versions of the /ip command.
     default: op
   altfinder.ip.self:
-    description: Gives acces to using the /ip command on themselves.
+    description: Gives access to using the /ip command on themselves.
     default: true
   altfinder.ip.other:
-    description: Gives acces to using the /ip command on others.
+    description: Gives access to using the /ip command on others.
     default: op
   altfinder.mcleaks.*:
-    description: Gives acces to all mcleaks features.
+    description: Gives access to all mcleaks features.
     default: op
   altfinder.mcleaks:
-    description: Gives acces to the /mcleaks command.
+    description: Gives access to the /mcleaks command.
     default: op
   altfinder.mcleaks.notify:
     description: Sends all mcleaks notifications to these players.
