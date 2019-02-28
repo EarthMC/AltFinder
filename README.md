@@ -1,13 +1,10 @@
-# **Development currently paused as it is only used by me unlike my other plugins, if you are interested in this plugin, create an issue and I'll get right back to developing it.**
-
 # AltFinder
 
-A spigot plugin to track down alternative accounts made for EarthMC. Not released yet.
+A spigot plugin to track down alternative accounts made for EarthMC. You can use this to search a database of known mcleaks accounts which are stolen minecraft accounts used by cheaters. It can also check IP addresses against a VPN database to block VPN users. Not officially released for public use but shouldn't have any major bugs.
 
 ## Coming features: 
-Check accounts against the database of stolen accounts MCLeaks.
 
-Automatically get all accounts from the same ip, with all usernames they have used to connect listed on each account.
+Automatically get all accounts from the same ips, with all usernames they have used to connect listed on each account.
 
 Manage alts to split the accounts of friends and family so they do not trigger warnings for alternate accounts anymore.
 
