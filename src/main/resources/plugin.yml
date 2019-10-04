@@ -1,7 +1,7 @@
 name: AltFinder
 version: 0.0.4
-author: Karl Essinger (KarlofDuty)
-website: http://karlofduty.com
+author: creatorfromhell, KarlofDuty
+website: https://earthmc.net
 main: com.karlofduty.altfinder.AltFinder
 commands:
   ip:
